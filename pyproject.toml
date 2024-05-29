@@ -1,0 +1,23 @@
+[project]
+name = "kaggle-ps-s04e05"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Breno Ingwersen", email = "brenoingwersen@gmail.com"},
+]
+dependencies = [
+    "kaggle>=1.6.14",
+    "pandas>=2.2.2",
+    "ipykernel>=6.29.4",
+    "scikit-learn>=1.5.0",
+    "optuna>=3.6.1",
+    "xgboost>=2.0.3",
+    "dill>=0.3.8",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false

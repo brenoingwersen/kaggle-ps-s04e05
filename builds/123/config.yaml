@@ -1,0 +1,31 @@
+build:
+  description: XGBoost test 1
+  dir: builds/123
+cross_validation:
+  n_folds: 5
+  random_state: 123
+data:
+  id_col: id
+  path: data/raw
+  target_col: FloodProbability
+  test: test.csv
+  train: train.csv
+feature_engineering:
+  path: src/feature_engineering.py
+feature_selection:
+  path: src/feature_selection.py
+metrics:
+  name: r2
+model:
+  parameters:
+    learning_rate: 0.1
+    max_depth: 6
+    n_estimators: 100
+    n_jobs: 16
+    random_state: 123
+  type: xgb
+preprocess:
+  path: src/preprocess.py
+results:
+  cv_score: 0.8688515810782793
+  train_time: 1321.211968953001
