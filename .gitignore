@@ -1,6 +1,9 @@
 config.mk
 *.csv
 *.joblib
+*.zip
+*.gz
+*.tar
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
