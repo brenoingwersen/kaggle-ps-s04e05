@@ -1,6 +1,6 @@
 build:
-  dir: builds/123
-  description: XGBoost test 1
+  dir: builds/456
+  description: LGBM test 1
 
 data:
   path: data/raw
@@ -19,13 +19,21 @@ feature_selection:
   path: src/feature_selection.py
 
 model:
-  type: xgb
+  type: lgbm
   parameters:
     random_state: 123
-    n_estimators: 100
-    max_depth: 6
-    learning_rate: 0.1
-    n_jobs: 16
+    verbosity: -1
+    boosting_type: gbdt
+    n_estimators: 2000
+    learning_rate: 0.012
+    num_leaves: 250
+    subsample_for_bin: 165700
+    min_child_samples: 114
+    reg_alpha: 2.075e-06
+    reg_lambda: 3.839e-07
+    colsample_bytree: 0.9634
+    subsample: 0.9592
+    max_depth: 10
 
 metrics:
   name: r2

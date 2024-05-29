@@ -46,6 +46,9 @@ train: config.mk
 submission: $(BUILD_DIR)/submission.csv config.mk
 	kaggle competitions submit -c $(COMPETITION) -f $< -m "$(BUILD_DESCRIPTION)"
 
+submissions:
+	kaggle competitions submissions $(COMPETITION) > submissions.csv
+
 clean:
 	rm -Rf $(BUILD_DIR)
 	rm config.mk

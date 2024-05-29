@@ -45,6 +45,6 @@ make clean
 
 ## Configuration
 
-- Available models: XGBoost
+- Available models: `XGBoost`, `LightGBM`.
 
 Alter the experiment configurations through `config.py`.

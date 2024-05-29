@@ -1,0 +1,39 @@
+build:
+  description: LGBM test 1
+  dir: builds/456
+cross_validation:
+  n_folds: 5
+  random_state: 123
+data:
+  id_col: id
+  path: data/raw
+  target_col: FloodProbability
+  test: test.csv
+  train: train.csv
+feature_engineering:
+  path: src/feature_engineering.py
+feature_selection:
+  path: src/feature_selection.py
+metrics:
+  name: r2
+model:
+  parameters:
+    boosting_type: gbdt
+    colsample_bytree: 0.9634
+    learning_rate: 0.012
+    max_depth: 10
+    min_child_samples: 114
+    n_estimators: 2000
+    num_leaves: 250
+    random_state: 123
+    reg_alpha: 2.075e-06
+    reg_lambda: 3.839e-07
+    subsample: 0.9592
+    subsample_for_bin: 165700
+    verbosity: -1
+  type: lgbm
+preprocess:
+  path: src/preprocess.py
+results:
+  cv_score: 0.8689394077753978
+  train_time: 2758.556763327999
