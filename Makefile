@@ -46,6 +46,8 @@ train: config.mk
 optimize: config.mk
 	pdm run python src/optimize.py
 
+$(BUILD_DIR)/submission.csv: train
+
 submission: $(BUILD_DIR)/submission.csv config.mk
 	kaggle competitions submit -c $(COMPETITION) -f $< -m "$(BUILD_DESCRIPTION)"
 

@@ -1,25 +1,22 @@
 build:
-  dir: builds/2
   description: LGBM features 1
-
+  dir: builds/2
+cross_validation:
+  n_folds: 5
+  random_state: 123
 data:
-  path: data/raw
-  train: train.csv
-  test: test.csv
   id_col: id
+  path: data/raw
   target_col: FloodProbability
-
+  test: test.csv
+  train: train.csv
 feature_engineering:
   path: src/feature_engineering/feature_engineering1.py
-
-preprocess:
-  path: src/preprocess.py
-
 feature_selection:
   path: src/feature_selection.py
-
+metrics:
+  name: r2
 model:
-  type: lgbm
   parameters:
     boosting_type: gbdt
     colsample_bytree: 0.964
@@ -33,32 +30,24 @@ model:
     reg_lambda: 3.839e-07
     subsample: 0.9592
     subsample_for_bin: 165700
-    random_state: 123
-
-train:
-  parameters:
-    # early_stopping_rounds: 50
-    # verbose: 100
-
-metrics:
-  name: r2
-
-cross_validation:
-  random_state: 123
-  n_folds: 5
-
+  type: lgbm
 optuna:
-  storage: sqlite
-  study_name: hyperparameter optimization
   direction: maximize
   n_trials: 100
-
-  sampler:
-    type: TPESampler
-    parameters:
-      seed: 123
-
   pruner:
-    type: HyperbandPruner
     parameters:
       max_resource: 5
+    type: HyperbandPruner
+  sampler:
+    parameters:
+      seed: 123
+    type: TPESampler
+  storage: sqlite
+  study_name: hyperparameter optimization
+preprocess:
+  path: src/preprocess.py
+results:
+  cv_score: 0.867473370241774
+  train_time: 1282.3593288850097
+train:
+  parameters: null

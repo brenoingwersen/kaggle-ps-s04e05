@@ -34,6 +34,11 @@ with open("config.yaml") as f:
     MODEL_TYPE = MODEL.get("type")
     MODEL_PARAMS = MODEL.get("parameters")
 
+    # Train params
+    TRAIN_PARAMS = CONFIG.get("train").get("parameters")
+    if TRAIN_PARAMS is not None:
+        TRAIN_PARAMS = {f"model__{k}": v for k, v in TRAIN_PARAMS.items()}
+
     # Metrics
     METRIC_NAME = CONFIG.get("metrics").get("name")
 

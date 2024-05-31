@@ -6,7 +6,7 @@ from time import perf_counter
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import KFold
 from sklearn.metrics import get_scorer
-from config import BUILD_DIR, TRAIN_FILE, TEST_FILE, ID_COL, TARGET_COL, METRIC_NAME, N_FOLDS, SEED
+from config import BUILD_DIR, TRAIN_FILE, TEST_FILE, ID_COL, TRAIN_PARAMS, TARGET_COL, METRIC_NAME, N_FOLDS, SEED
 from logging_config import logging
 
 
@@ -62,7 +62,7 @@ def train(pipeline, train_data, test_data):
         X_val, y_val = X.loc[val_idx], y.loc[val_idx]
         # Train the model
         start_time = perf_counter()
-        pipeline.fit(X_train, y_train)
+        pipeline.fit(X_train, y_train, **(TRAIN_PARAMS or {}))
         end_time = perf_counter()
         train_time = end_time - start_time
         # Calculate fold score

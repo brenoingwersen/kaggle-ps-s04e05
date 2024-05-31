@@ -1,7 +1,7 @@
 import dill
 import pandas as pd
 from sklearn.preprocessing import FunctionTransformer
-from config import BUILD_DIR
+from src.config import BUILD_DIR
 
 
 def create_features(s: pd.Series):

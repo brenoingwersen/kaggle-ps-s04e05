@@ -1,0 +1,49 @@
+build:
+  description: Catboost
+  dir: builds/1
+cross_validation:
+  n_folds: 5
+  random_state: 123
+data:
+  id_col: id
+  path: data/raw
+  target_col: FloodProbability
+  test: test.csv
+  train: train.csv
+feature_engineering:
+  path: src/feature_engineering.py
+feature_selection:
+  path: src/feature_selection.py
+metrics:
+  name: r2
+model:
+  parameters:
+    learning_rate: 0.016714889518285515
+    max_bin: 200
+    max_depth: 7
+    min_data_in_leaf: 300
+    n_estimators: 200
+    random_state: 123
+  type: cat_boost
+optuna:
+  direction: maximize
+  n_trials: 100
+  pruner:
+    parameters:
+      max_resource: 5
+    type: HyperbandPruner
+  sampler:
+    parameters:
+      seed: 123
+    type: TPESampler
+  storage: sqlite
+  study_name: hyperparameter optimization
+preprocess:
+  path: src/preprocess.py
+results:
+  cv_score: 0.8634261661742306
+  train_time: 1528.330719953985
+train:
+  parameters:
+    early_stopping_rounds: 50
+    verbose: false

@@ -111,20 +111,14 @@ class ProgressBar(tqdm):
 # Sampler
 if SAMPLER_TYPE is not None:
     Sampler = getattr(optuna.samplers, SAMPLER_TYPE)
-    if SAMPLER_PARAMS is not None:
-        sampler = Sampler(**SAMPLER_PARAMS)
-    else:
-        sampler = Sampler()
+    sampler = Sampler(**(SAMPLER_PARAMS or {}))
 else:
     sampler = None
 
 # Pruner
 if PRUNER_TYPE is not None:
     Pruner = getattr(optuna.pruners, PRUNER_TYPE)
-    if PRUNER_PARAMS is not None:
-        pruner = Pruner(**PRUNER_PARAMS)
-    else:
-        pruner = Pruner()
+    pruner = Pruner(**(PRUNER_PARAMS or {}))
 else:
     pruner = None
 
