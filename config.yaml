@@ -1,6 +1,6 @@
 build:
-  dir: builds/456
-  description: LGBM test 1
+  dir: builds/789
+  description: XGB Optuna 1
 
 data:
   path: data/raw
@@ -19,21 +19,14 @@ feature_selection:
   path: src/feature_selection.py
 
 model:
-  type: lgbm
+  type: xgb
   parameters:
+    learning_rate: 0.1
+    max_depth: 6
+    n_estimators: 100
+    n_jobs: 20
     random_state: 123
-    verbosity: -1
-    boosting_type: gbdt
-    n_estimators: 2000
-    learning_rate: 0.012
-    num_leaves: 250
-    subsample_for_bin: 165700
-    min_child_samples: 114
-    reg_alpha: 2.075e-06
-    reg_lambda: 3.839e-07
-    colsample_bytree: 0.9634
-    subsample: 0.9592
-    max_depth: 10
+    verbose: -1
 
 metrics:
   name: r2
@@ -41,3 +34,19 @@ metrics:
 cross_validation:
   random_state: 123
   n_folds: 5
+
+optuna:
+  storage: sqlite
+  study_name: hyperparameter optimization
+  direction: maximize
+  n_trials: 100
+
+  sampler:
+    type: TPESampler
+    parameters:
+      seed: 123
+
+  pruner:
+    type: HyperbandPruner
+    parameters:
+      max_resource: 5

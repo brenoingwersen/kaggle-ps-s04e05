@@ -1,5 +1,6 @@
 import os
 import yaml
+import re
 from uuid import uuid4
 
 
@@ -23,6 +24,11 @@ with open("config.yaml") as f:
     ID_COL = DATA_CONFIG.get("id_col")
     TARGET_COL = DATA_CONFIG.get("target_col")
 
+    # Pipeline
+    FEATURE_ENGINEER = CONFIG.get("feature_engineering").get("path")
+    PREPROCESS = CONFIG.get("preprocess").get("path")
+    FEATURE_SELECTION = CONFIG.get("feature_selection").get("path")
+
     # Model
     MODEL = CONFIG.get("model")
     MODEL_TYPE = MODEL.get("type")
@@ -34,3 +40,21 @@ with open("config.yaml") as f:
     # Cross-validation
     N_FOLDS = CONFIG.get("cross_validation").get("n_folds")
     SEED = CONFIG.get("cross_validation").get("random_state")
+
+    # Optuna
+    OPTUNA_CONFIG = CONFIG.get("optuna")
+    OPTUNA_STUDY_NAME = OPTUNA_CONFIG.get("study_name")
+    OPTUNA_DIRECTION = OPTUNA_CONFIG.get("direction")
+    OPTUNA_N_TRIALS = OPTUNA_CONFIG.get("n_trials")
+    # Sampler
+    SAMPLER_TYPE = OPTUNA_CONFIG.get("sampler").get("type")
+    SAMPLER_PARAMS = OPTUNA_CONFIG.get("sampler").get("parameters")
+    # Pruner
+    PRUNER_TYPE = OPTUNA_CONFIG.get("pruner").get("type")
+    PRUNER_PARAMS = OPTUNA_CONFIG.get("pruner").get("parameters")
+
+    if OPTUNA_CONFIG.get("storage") == "sqlite":
+        study_name_fmt = re.sub(pattern=r"\s+",
+                                repl="_",
+                                string=OPTUNA_STUDY_NAME.lower()).strip()
+        OPTUNA_STORAGE = f"sqlite:///{BUILD_DIR}/{study_name_fmt}.db"
