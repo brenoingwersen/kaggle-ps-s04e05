@@ -23,15 +23,31 @@ model:
     learning_rate: 0.012
     max_depth: 10
     min_child_samples: 110
-    n_estimators: 2000
+    n_estimators: 500
     num_leaves: 250
     random_state: 123
     reg_alpha: 2.075e-06
     reg_lambda: 3.839e-07
     subsample: 0.9592
     subsample_for_bin: 165700
+    verbosity: -1
   type: lgbm
 optuna:
+  best_trial:
+    number: 76
+    parameters:
+      colsample_bytree: 1.0
+      learning_rate: 0.0188097275228771
+      max_depth: 10
+      min_child_samples: 19
+      n_estimators: 500
+      num_leaves: 97
+      random_state: 123
+      reg_alpha: 0.04217738086743574
+      reg_lambda: 0.0004049048224856533
+      subsample: 0.6
+      verbose: -1
+    score: 0.867593272640011
   direction: maximize
   n_trials: 100
   pruner:
@@ -47,7 +63,7 @@ optuna:
 preprocess:
   path: src/preprocess.py
 results:
-  cv_score: 0.867473370241774
-  train_time: 1282.3593288850097
+  cv_score: 0.8673491879728127
+  train_time: 262.1663991850219
 train:
   parameters: null

@@ -26,14 +26,14 @@ model:
     learning_rate: 0.012
     max_depth: 10
     min_child_samples: 110
-    n_estimators: 2000
+    n_estimators: 500
     num_leaves: 250
-    random_state: 123
     reg_alpha: 2.075e-06
     reg_lambda: 3.839e-07
     subsample: 0.9592
     subsample_for_bin: 165700
     random_state: 123
+    verbosity: -1
 
 train:
   parameters:
@@ -51,7 +51,7 @@ optuna:
   storage: sqlite
   study_name: hyperparameter optimization
   direction: maximize
-  n_trials: 100
+  n_trials: 2
 
   sampler:
     type: TPESampler

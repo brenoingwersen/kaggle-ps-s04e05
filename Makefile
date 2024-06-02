@@ -24,11 +24,11 @@ $(DATA_TRAIN) $(DATA_TEST): $(DIR_DATA)
 # Config
 YAML_FILE := config.yaml
 
-include config.mk
-
 config.mk:
 	@echo "Generating configuration from YAML file..."
 	@python parse_yaml.py $(YAML_FILE) > config.mk
+
+include config.mk
 
 train: config.mk
 	# Feature Engineering
@@ -41,7 +41,6 @@ train: config.mk
 	pdm run python src/model.py
 	# Train the model
 	pdm run python src/train.py
-	rm config.mk
 
 optimize: config.mk
 	pdm run python src/optimize.py
